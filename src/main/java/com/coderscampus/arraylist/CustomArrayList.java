@@ -9,18 +9,17 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@Override
 	public boolean add(T item) { // add method takes in a T (type) and item
 		if (size == items.length) { // if the size of the list equals the length of the array then
-			int newArrSize = (items.length) * 2;
-			items = Arrays.copyOf(items, newArrSize);
+			items = Arrays.copyOf(items, items.length * 2);
 		} // just with a doubled size
 		
-		items[size] = item; // item array at new size = item at that index of size
-		size++; // increase the size of the array after each add
+		items[size++] = item; // item array at new size = item at that index of size
+		 // increase the size of the array after each add
 		
-		for (Object obj : items) {
-			if (obj != null) {
-				items = Arrays.copyOf(items, size); 
-			}
-		}
+//		for (Object obj : items) {
+//			if (obj != null) {
+//				items = Arrays.copyOf(items, size); 
+//			}
+//		}
 		
 		return true; // returns true if item was added
 	}
@@ -47,7 +46,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 			throw new IndexOutOfBoundsException("Index " + index + " is out of bounds for an array of size " + size);
 		}
 		
-		add(item);
+		add(null); // adds item to array at the last available index 
 		
 		Object[] tempArr = new Object[items.length];
 		
@@ -57,7 +56,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 		tempArr[index] = item;
 		
-		for (int i = index + 1; i >= items.length; i++) {
+		for (int i = index + 1; i < items.length; i++) {
 			tempArr[i] = items[i - 1];			
 		}
 
@@ -75,7 +74,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 		}
 		
 		Object removedItem = null;
-		Object[] tempArray = new Object[items.length - 1];
+		Object[] tempArray = new Object[items.length];
 		int tempArrIndex = 0;
 		
 		for (int i = 0; i < items.length; i++) {

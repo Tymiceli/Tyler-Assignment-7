@@ -1,7 +1,10 @@
 package com.coderscampus.arraylist;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -21,8 +24,23 @@ class CustomArrayListTest {
 
 	@BeforeEach
 	void before_each_test() {
+		
 		sut = new CustomArrayList<>();
+		
+//		for (int i = 0; i < 10; i++) {
+//			sut.add(i);
+//		}
+//		
+//		sut.remove(9);
+//		sut.remove(7);
+//		sut.add(1000);
+//		sut.add(6,1001);
+//		sut.add(6,1002);
+//		sut.add(6,1003);
+//		sut.remove(8);
+		
 	}
+	
 
 	@Test
 	void should_return_size() {
@@ -87,7 +105,7 @@ class CustomArrayListTest {
 	void should_throw_exception_when_out_of_bounds() {
 		sut.add(1);
 //		sut.add(2);
-		assertThrows(IndexOutOfBoundsException.class, () -> sut.get(1), "Throws ArrayIndexOutOfBoundsException");
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.get(2), "Throws ArrayIndexOutOfBoundsException");
 	}
 	
 	@Test
