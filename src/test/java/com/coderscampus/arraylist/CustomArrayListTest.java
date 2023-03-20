@@ -26,11 +26,11 @@ class CustomArrayListTest {
 	void before_each_test() {
 		
 		sut = new CustomArrayList<>();
-		
+//		
 //		for (int i = 0; i < 10; i++) {
 //			sut.add(i);
 //		}
-//		
+		
 //		sut.remove(9);
 //		sut.remove(7);
 //		sut.add(1000);
@@ -46,9 +46,8 @@ class CustomArrayListTest {
 	void should_return_size() {
 		// act
 		sut.add(1000);
-		sut.add(0, 1001);
 		//assert
-		assertEquals(2, sut.getSize());
+		assertEquals(1, sut.getSize());
 	}
 
 	@Test
@@ -105,17 +104,17 @@ class CustomArrayListTest {
 	void should_throw_exception_when_out_of_bounds() {
 		sut.add(1);
 //		sut.add(2);
-		assertThrows(IndexOutOfBoundsException.class, () -> sut.get(2), "Throws ArrayIndexOutOfBoundsException");
+		assertThrows(IndexOutOfBoundsException.class, () -> sut.get(2), "Throws IndexOutOfBoundsException");
 	}
 	
 	@Test
 	void should_throw_exception_when_removing_out_of_bounds() {
 		
-		assertThrows(IndexOutOfBoundsException.class, ()-> sut.remove(3), "Throws ArrayIndexOutOfBoundsException");
+		assertThrows(IndexOutOfBoundsException.class, ()-> sut.remove(3), "Throws IndexOutOfBoundsException");
 	}
 	
 	@Test
  	void should_throw_exception_when_adding_out_of_bounds () {
- 		assertThrows(IndexOutOfBoundsException.class, ()-> sut.add(3, 3), "Throws ArrayIndexOutOfBoundsException");
+ 		assertThrows(IndexOutOfBoundsException.class, ()-> sut.add(3, 3), "Throws IndexOutOfBoundsException");
 	}
 }

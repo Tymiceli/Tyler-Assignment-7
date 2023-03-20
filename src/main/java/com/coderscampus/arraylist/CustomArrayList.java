@@ -8,20 +8,8 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(T item) { // add method takes in a T (type) and item
-		if (size == items.length) { // if the size of the list equals the length of the array then
-			items = Arrays.copyOf(items, items.length * 2);
-		} // just with a doubled size
 		
-		items[size++] = item; // item array at new size = item at that index of size
-		 // increase the size of the array after each add
-		
-//		for (Object obj : items) {
-//			if (obj != null) {
-//				items = Arrays.copyOf(items, size); 
-//			}
-//		}
-		
-		return true; // returns true if item was added
+		return add(size, item);
 	}
 
 	@Override
@@ -32,7 +20,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public T get(int index) throws IndexOutOfBoundsException { // takes in a type (array type) and an integer
-																// (items.get(10))
+																
 		if (index > size) // if the integer you inputed as the index is greater
 			throw new IndexOutOfBoundsException(
 					"The index, " + index + ", is out of the bounds of the array with size " + size);
@@ -46,22 +34,16 @@ public class CustomArrayList<T> implements CustomList<T> {
 			throw new IndexOutOfBoundsException("Index " + index + " is out of bounds for an array of size " + size);
 		}
 		
-		add(null); // adds item to array at the last available index 
-		
-		Object[] tempArr = new Object[items.length];
-		
-		for (int i = 0; i < index; i++) {
-			tempArr[i] = items[i];
+		if (size == items.length) {
+			items = Arrays.copyOf(items, items.length * 2);
 		}
-
-		tempArr[index] = item;
 		
-		for (int i = index + 1; i < items.length; i++) {
-			tempArr[i] = items[i - 1];			
+		for (int i = size; i > index; i--) {
+			items[i] = items[i-1];
 		}
-
-		items = Arrays.copyOf(tempArr, tempArr.length);
 		
+		items[index] = item;
+		size++;
 		return true;
 	}
 
@@ -73,19 +55,13 @@ public class CustomArrayList<T> implements CustomList<T> {
 			throw new IndexOutOfBoundsException("Index " + index + " is out of bounds");
 		}
 		
-		Object removedItem = null;
-		Object[] tempArray = new Object[items.length];
-		int tempArrIndex = 0;
+		Object removedItem = items[index];
 		
-		for (int i = 0; i < items.length; i++) {
-			if (i == index) {
-				removedItem = items[i];
-				continue;
-			}
-			tempArray[tempArrIndex++] = items[i];
+		for (int i = index; i < size-1; i++) {
+			items[i] = items[i+1];
 		}
-
-		items = Arrays.copyOf(tempArray, tempArray.length);
+		items[size-1] = null;
+		
 		size--;
 		
 		return (T) removedItem;
