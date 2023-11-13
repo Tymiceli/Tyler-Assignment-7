@@ -6,7 +6,7 @@ and also containing JUnit and a non-static app launcher.
 ## Why?
 
 - Get accustomed to utilizing corporate standard setups from day 1
-- Help you avoid a few common foot-guns that plague many students
+- Help you avoid a few common foot-guns that plague many devs
 - Skaffolds your project as our reviewers expect it
 - Helps you focus your work where it matters, on the serviceable code within.
 
